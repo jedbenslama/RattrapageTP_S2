@@ -22,7 +22,7 @@ int main() {
     }
 
     for (int i = 0; i < nbJoueurs; i++) {
-        printf("%s %i %i", joueurs[i].nom, joueurs[i].role, joueurs[i].votes);
+        printf("%s %i %i\n", joueurs[i].nom, joueurs[i].role, joueurs[i].votes);
     }
 
     return 0;
