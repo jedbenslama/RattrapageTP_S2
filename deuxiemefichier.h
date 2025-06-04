@@ -110,3 +110,20 @@ void voterAleatoirement(int nbJoueurs, Joueur joueurs[]){
     }
 }
 
+int supprimerJoueurAvecPlusDeVotes(Joueur joueurs[], int nbJoueurs) {
+    int maxVotes = joueurs[0].votes;
+    int indexMax = 0;
+
+    for (int i = 1; i < nbJoueurs; i++) {
+        if (joueurs[i].votes > maxVotes) {
+            maxVotes = joueurs[i].votes;
+            indexMax = i;
+        }
+    }
+    printf("Le joueur %s avec %i vote(s) a été éliminé.\n", joueurs[indexMax].nom, joueurs[indexMax].votes);
+    for (int i = indexMax; i < nbJoueurs - 1; i++) {
+        joueurs[i] = joueurs[i + 1];
+    }
+
+    return nbJoueurs-1;
+}

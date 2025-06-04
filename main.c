@@ -18,5 +18,7 @@ int main() {
 
     afficherJoueurs(0, nbJoueurs, joueurs);
 
+    nbJoueurs=supprimerJoueurAvecPlusDeVotes(joueurs, nbJoueurs);
+
     return 0;
 }
