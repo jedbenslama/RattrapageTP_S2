@@ -35,7 +35,7 @@ int attributeRole(int impostor, int spots_restants) { // spots restants c'est po
             rien=1;
         }
         else{
-            srand(time(NULL));
+            srand((unsigned)time(NULL));
             rien = rand() % 2;
         }
     }
