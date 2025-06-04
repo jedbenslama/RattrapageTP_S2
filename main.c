@@ -14,10 +14,8 @@ int main() {
 
     afficherJoueurs(0, nbJoueurs, joueurs);
     
-    srand((unsigned)time(NULL));
-    for (int i = 0; i < nbJoueurs; i++) {
-        joueurs[i].votes+= rand() % 2;;
-    }
+    voterAleatoirement(nbJoueurs, joueurs);
+
     afficherJoueurs(0, nbJoueurs, joueurs);
 
     return 0;

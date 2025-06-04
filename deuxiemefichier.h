@@ -102,3 +102,11 @@ void reinitialiserCompteursVotes(int nbJoueurs, Joueur joueurs[]){
         joueurs[i].votes=0;
     }
 }
+
+void voterAleatoirement(int nbJoueurs, Joueur joueurs[]){
+    srand((unsigned)time(NULL));
+    for (int i = 0; i < nbJoueurs; i++) {
+        joueurs[i].votes+= rand() % 2;
+    }
+}
+
