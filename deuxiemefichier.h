@@ -2,6 +2,12 @@
 #define NOM_MAX 50
 #define MINIMUM_JOUEURS 3
 
+typedef struct {
+    char nom[NOM_MAX];
+    int role;
+    int votes;
+} Joueur;
+
 int getNombre(int typededemande_aussi_nombre_de_joueurs) {
     int n;
     char taillejoueurs[32];
@@ -61,5 +67,38 @@ void inputNom(char *nom, int taille) {
         }else{
             break;
         }
+    }
+}
+
+
+void initSession(int nbJoueurs, int nbImpostors, Joueur joueurs[]){
+    int impostorsAttributed = 0;
+    for (int i = 0; i < nbJoueurs; i++) {
+        printf("\nJoueur %i\n", i + 1);
+        inputNom(joueurs[i].nom, NOM_MAX);
+        joueurs[i].role = attributeRole(nbImpostors-impostorsAttributed, nbJoueurs-i);
+        if(joueurs[i].role==1){
+            impostorsAttributed++;
+        }
+        joueurs[i].votes = 0;
+    }
+}
+
+void afficherJoueurs(int roles, int nbJoueurs, Joueur joueurs[]){
+    printf("\n");
+    if(roles==1){
+        for (int i = 0; i < nbJoueurs; i++) {
+            printf("Nom: %s\nVotes: %i\nImpostor: %i\n", joueurs[i].nom, joueurs[i].votes, joueurs[i].role);
+        }
+    }else{
+        for (int i = 0; i < nbJoueurs; i++) {
+            printf("Nom: %s\nVotes: %i\n\n", joueurs[i].nom, joueurs[i].votes);
+        }
+    }
+}
+
+void reinitialiserCompteursVotes(int nbJoueurs, Joueur joueurs[]){
+    for (int i = 0; i < nbJoueurs; i++) {
+        joueurs[i].votes=0;
     }
 }
