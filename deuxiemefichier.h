@@ -1,4 +1,3 @@
-#define MAX_JOUEURS 100
 #define NOM_MAX 50
 #define MINIMUM_JOUEURS 3
 
@@ -110,20 +109,41 @@ void voterAleatoirement(int nbJoueurs, Joueur joueurs[]){
     }
 }
 
-int supprimerJoueurAvecPlusDeVotes(Joueur joueurs[], int nbJoueurs) {
+Joueur* supprimerJoueurAvecPlusDeVotes(Joueur *joueurs, int *nbJoueurs) {
     int maxVotes = joueurs[0].votes;
     int indexMax = 0;
 
-    for (int i = 1; i < nbJoueurs; i++) {
+    for (int i = 1; i < *nbJoueurs; i++) {
         if (joueurs[i].votes > maxVotes) {
             maxVotes = joueurs[i].votes;
             indexMax = i;
         }
     }
+
     printf("Le joueur %s avec %i vote(s) a été éliminé.\n", joueurs[indexMax].nom, joueurs[indexMax].votes);
-    for (int i = indexMax; i < nbJoueurs - 1; i++) {
+
+    for (int i = indexMax; i < *nbJoueurs - 1; i++) {
         joueurs[i] = joueurs[i + 1];
     }
 
-    return nbJoueurs-1;
+    (*nbJoueurs)--;
+
+    Joueur *tmp = realloc(joueurs, (*nbJoueurs) * sizeof(Joueur));
+    if (tmp == NULL && *nbJoueurs > 0) {
+        fprintf(stderr, "Erreur realloc.\n");
+        return joueurs;
+    }
+
+    return tmp;
+}
+
+
+int recompterNombreImpostors(Joueur joueurs[], int nbJoueurs){
+    int impostors = 0;
+    for (int i = 0; i < nbJoueurs; i++) {
+        if (joueurs[i].role == 1) {
+            impostors++;
+        }
+    }
+    return impostors;
 }

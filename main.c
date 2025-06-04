@@ -6,8 +6,15 @@
 #include "deuxiemefichier.h"
 
 int main() {
-    Joueur joueurs[MAX_JOUEURS];
+    Joueur *joueurs = NULL;
+
     int nbJoueurs = getNombre(-1);
+    joueurs = malloc(nbJoueurs * sizeof(Joueur));
+    if (joueurs == NULL) {
+        fprintf(stderr, "Erreur\n");
+        return 1;
+    }
+
     int nbImpostors = getNombre(nbJoueurs);
 
     initSession(nbJoueurs, nbImpostors, joueurs);
@@ -18,7 +25,11 @@ int main() {
 
     afficherJoueurs(0, nbJoueurs, joueurs);
 
-    nbJoueurs=supprimerJoueurAvecPlusDeVotes(joueurs, nbJoueurs);
+    joueurs=supprimerJoueurAvecPlusDeVotes(joueurs, &nbJoueurs);
+    
+    afficherJoueurs(0, nbJoueurs, joueurs);
+
+    printf("%i",nbJoueurs);
 
     return 0;
 }
