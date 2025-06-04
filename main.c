@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 #include "deuxiemefichier.h"
+
 
 typedef struct {
     char nom[NOM_MAX];
@@ -12,12 +14,17 @@ typedef struct {
 
 int main() {
     Joueur joueurs[MAX_JOUEURS];
-    int nbJoueurs = getNombreJoueurs();
+    int nbJoueurs = getNombre(-1);
+    int nbImpostors = getNombre(nbJoueurs);
+    int impostorsAttributed = 0;
 
     for (int i = 0; i < nbJoueurs; i++) {
         printf("\nJoueur %i\n", i + 1);
         inputNom(joueurs[i].nom, NOM_MAX);
-        joueurs[i].role = inputRole();
+        joueurs[i].role = attributeRole(nbImpostors-impostorsAttributed, nbJoueurs-i);
+        if(joueurs[i].role==1){
+            impostorsAttributed++;
+        }
         joueurs[i].votes = 0;
     }
 
