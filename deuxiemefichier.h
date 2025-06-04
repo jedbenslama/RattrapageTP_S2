@@ -9,7 +9,7 @@ int getNombre(int typededemande_aussi_nombre_de_joueurs) {
         if(typededemande_aussi_nombre_de_joueurs==-1){
             printf("Entrez le nombre de joueurs (>= %i) : ", MINIMUM_JOUEURS);
         }else{
-            printf("Entrez le nombre d'imposteurs (>= 1 && < %i) : ", MINIMUM_JOUEURS);
+            printf("Entrez le nombre d'imposteurs (>= 1 && < %i) : ", typededemande_aussi_nombre_de_joueurs);
         }
         if (fgets(taillejoueurs, sizeof(taillejoueurs), stdin) == NULL) {
             printf("Erreur de lecture.\n");

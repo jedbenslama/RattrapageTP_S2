@@ -12,12 +12,8 @@ typedef struct {
     int votes;
 } Joueur;
 
-int main() {
-    Joueur joueurs[MAX_JOUEURS];
-    int nbJoueurs = getNombre(-1);
-    int nbImpostors = getNombre(nbJoueurs);
+void initSession(int nbJoueurs, int nbImpostors, Joueur joueurs[]){
     int impostorsAttributed = 0;
-
     for (int i = 0; i < nbJoueurs; i++) {
         printf("\nJoueur %i\n", i + 1);
         inputNom(joueurs[i].nom, NOM_MAX);
@@ -27,6 +23,14 @@ int main() {
         }
         joueurs[i].votes = 0;
     }
+}
+
+int main() {
+    Joueur joueurs[MAX_JOUEURS];
+    int nbJoueurs = getNombre(-1);
+    int nbImpostors = getNombre(nbJoueurs);
+
+    initSession(nbJoueurs, nbImpostors, joueurs);
 
     for (int i = 0; i < nbJoueurs; i++) {
         printf("%s %i %i\n", joueurs[i].nom, joueurs[i].role, joueurs[i].votes);
