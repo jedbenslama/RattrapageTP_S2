@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
+#include <unistd.h>
 #include "deuxiemefichier.h"
 
 int main() {
@@ -30,6 +31,8 @@ int main() {
     afficherJoueurs(0, nbJoueurs, joueurs);
 
     printf("%i",nbJoueurs);
-
+    
+    system("clear");
+    
     return 0;
 }

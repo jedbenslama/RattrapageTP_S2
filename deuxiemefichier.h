@@ -119,8 +119,14 @@ Joueur* supprimerJoueurAvecPlusDeVotes(Joueur *joueurs, int *nbJoueurs) {
             indexMax = i;
         }
     }
+    char role[50];
 
-    printf("Le joueur %s avec %i vote(s) a été éliminé.\n", joueurs[indexMax].nom, joueurs[indexMax].votes);
+    if(joueurs[indexMax].role==1){
+        strcpy(role, "Impostor");
+    }else{
+        strcpy(role, "Crewmate");
+    }
+    printf("Le joueur %s avec %i vote(s) a été éliminé.\nSon role: %s\n", joueurs[indexMax].nom, joueurs[indexMax].votes, role);
 
     for (int i = indexMax; i < *nbJoueurs - 1; i++) {
         joueurs[i] = joueurs[i + 1];
